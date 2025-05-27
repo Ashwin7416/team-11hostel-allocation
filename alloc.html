@@ -40,8 +40,128 @@
       border-collapse: collapse;
     }
 `
+ th, td {
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .available {
+      color: green;
+      font-weight: bold;
+    }
+
+    .full {
+      color: red;
+      font-weight: bold;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      table, th, td {
+    table, th, td {
+        font-size: 14px;
+      }
+
+      input[type="text"] {
+        font-size: 14px;
+      }
+    }
+i
   </style>
 </head>
 <body>
+
+	<div class="container">
+  <h1>Current Hostel Availability</h1>
+
+  <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search for hostel name...">
+
+  <table id="availabilityTable">
+    <thead>
+      <tr>
+        <th>Hostel Name</th>
+        <th>Total Rooms</th>
+        <th>Occupied</th>
+        <th>Available</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Hostel A</td>
+        <td>100</td>
+        <td>90</td>
+        <td>10</td>
+        <td class="available">Available</td>
+      </tr>
+      <tr>
+        <td>Hostel B</td>
+        <td>80</td>
+        <td>75</td>
+        <td>5</td>
+        <td class="available">Available</td>
+      </tr>
+      <tr>
+<td>Hostel C</td>
+        <td>60</td>
+        <td>60</td>
+        <td>0</td>
+        <td class="full">Full</td>
+      </tr>
+      <tr>
+        <td>Hostel D</td>
+        <td>120</td>
+        <td>100</td>
+        <td>20</td>
+        <td class="available">Available</td>
+      </tr>
+      <tr>
+        <td>Hostel E</td>
+        <td>50</td>
+        <td>50</td>
+        <td>0</td>
+        <td class="full">Full</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <p>&copy; 2025 University Hostel Management System</p>
+  </div>
+</div>
+
+<script>
+  function filterTable() {
+    const input = document.getElementById("searchInput");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("availabilityTable');
+	   const tr = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < tr.length; i++) {
+      const td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        const txtValue = td.textContent || td.innerText;
+        tr[i].style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+      }
+    }
+  }
+</script>
+
 </body>
 </html>
